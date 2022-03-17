@@ -1,7 +1,41 @@
-import './Track.css';
+import "./Track.css";
 
-function Track(props) {
-  return <div></div>;
-}
+const Track = ({track, isRemovel, onAdd, onRemove}) => {
+
+  const addTrack = () => {
+    onAdd(track);
+  };
+
+  const removeTrack = () => {
+    onRemove(track)
+  }
+
+  const renderAction = () => {
+    if(isRemovel){
+      return <button className="Track-action" onClick={removeTrack}>
+        -
+      </button>;
+    }else{
+      return <button className="Track-action" onClick={addTrack}>
+        +
+      </button>;
+    };
+    
+  }
+
+
+
+  return (
+    <div className="Track">
+      <div className="Track-information">
+        <h3>{track.nameList}</h3>
+        <p>
+          {track.artist} | {track.album}
+        </p>
+      </div>
+      {renderAction()}
+    </div>
+  )
+};
 
 export default Track;

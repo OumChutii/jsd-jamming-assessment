@@ -1,7 +1,20 @@
-import './Playlist.css';
+import "./Playlist.css";
 
-function Playlist() {
-  return <div></div>;
-}
+import TrackList from "../TrackList/TrackList";
+
+const Playlist = ({playlistName, playlistTracks, onRemove, onNameChange, onSave}) => {
+
+  const handleNameChange = (e) => {
+    onNameChange(e.target.value);
+  }
+
+  return (
+    <div className="Playlist">
+      <input value={playlistName} onChange={handleNameChange} />
+      <TrackList lists={playlistTracks} onRemove={onRemove} isRemovel={true} />
+      <button className="Playlist-save" onClick={onSave}>SAVE TO SPOTIFY</button>
+    </div>
+  )
+};
 
 export default Playlist;
